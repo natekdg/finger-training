@@ -2,7 +2,7 @@ import os
 import cv2
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
-def load_and_preprocess_images(directory, target_size = (224, 224)):
+def load_and_preprocess_fingers(directory, target_size = (224, 224)):
     images = []
     labels = []
 
@@ -14,6 +14,17 @@ def load_and_preprocess_images(directory, target_size = (224, 224)):
         if not os.path.isdir(label_dir):
             continue
 
+    # goes over every image in subdirectory
     for image_file in os.listdir(label_dir):
         image_path = os.path.join(label_dir, image_file)
-        image = cv2.imread(image_path)
+        image = cv2.imread(image_path)  #load image into cv2
+    
+        # check if image is readable then proceed with processing readable images
+        if  image is not None:
+            image = cv2.resize(image, target_size)
+            image = image / 255.0   # stablize pixel value
+            image.append(image)
+            labels.append(int(label))
+    
+    return images, labels   #return lists of 'images' and 'data' 
+
