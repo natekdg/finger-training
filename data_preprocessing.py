@@ -1,6 +1,6 @@
 import os
 import cv2
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow import ImageDataGenerator
 
 def load_and_preprocess_fingers(directory, target_size = (224, 224)):
     images = []
