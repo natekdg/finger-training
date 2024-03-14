@@ -11,13 +11,14 @@ images = np.array(images)
 labels = np.array(labels)
 
 # split data for training and validation
-X_trian, X_val, y_train, y_val = train_test_split(images, labels, test_size = 0.2, random_state = 42)
+X_train, X_val, y_train, y_val = train_test_split(images, labels, test_size = 0.2, random_state = 42)
 
 # build the mdoel and train it
 model = create_model()
 
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
-model.fit(X_trian, y_train, epochs = 10. validation_data=(X_val, y_val))
+model.fit(X_train, y_train, epochs=10, validation_data=(X_val, y_val))
 
 # save the model
 model.save('finger_mode.h5')

@@ -1,6 +1,5 @@
-import os
 import cv2
-from tensorflow import ImageDataGenerator
+import os
 
 def load_and_preprocess_fingers(directory, target_size = (224, 224)):
     images = []
