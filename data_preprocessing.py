@@ -22,7 +22,7 @@ def load_and_preprocess_fingers(directory, target_size = (224, 224)):
         if  image is not None:
             image = cv2.resize(image, target_size)
             image = image / 255.0   # stablize pixel value
-            image.append(image)
+            images.append(image)
             labels.append(int(label))
     
     return images, labels   #return lists of 'images' and 'data' 
